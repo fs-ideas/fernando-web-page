@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Forma Method — Fernando Silveira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1814;
+      --paper: #f7f4ee;
+      --warm: #c8b89a;
+      --accent: #8b6f47;
+      --muted: #9e9890;
+      --rule: #d8d2c8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* GRAIN OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* HEADER */
+    header {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 3rem 4rem;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .header-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .header-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 0;
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.2s forwards;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.35s forwards;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .header-statement {
+      margin-top: 3rem;
+      max-width: 52ch;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #4a4540;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.5s forwards;
+    }
+
+    .header-footer {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.65s forwards;
+    }
+
+    .scroll-hint {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-line {
+      width: 60px;
+      height: 1px;
+      background: var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      animation: lineSlide 2s ease-in-out 1.5s infinite;
+    }
+
+    /* DECORATIVE VERTICAL TEXT */
+    .vertical-text {
+      position: absolute;
+      right: 4rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      transform-origin: center center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--rule);
+      white-space: nowrap;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 4rem;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+      max-width: 22ch;
+    }
+
+    h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .prose {
+      max-width: 62ch;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #4a4540;
+      line-height: 1.85;
+    }
+
+    .prose p + p {
+      margin-top: 1.2em;
+    }
+
+    /* TWO COLUMN */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* PRINCIPLES */
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 4rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .principle {
+      padding: 3rem 2.5rem 3rem 0;
+      border-right: 1px solid var(--rule);
+    }
+
+    .principle:last-child {
+      border-right: none;
+      padding-right: 0;
+      padding-left: 2.5rem;
+    }
+
+    .principle:nth-child(2) {
+      padding-left: 2.5rem;
+    }
+
+    .principle-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .principle h3 {
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .principle p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #5a5550;
+      line-height: 1.8;
+    }
+
+    /* PATHS */
+    .paths {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 4rem;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .path-card {
+      background: var(--paper);
+      padding: 2.5rem;
+      transition: background 0.3s ease;
+    }
+
+    .path-card:hover {
+      background: #f0ece3;
+    }
+
+    .path-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--rule);
+      display: block;
+      margin-bottom: 1.5rem;
+      line-height: 1;
+    }
+
+    .path-card h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .path-card p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #6a6560;
+      line-height: 1.75;
+    }
+
+    .path-detail {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 2;
+    }
+
+    /* QUOTE SECTION */
+    .quote-section {
+      text-align: center;
+      padding: 8rem 4rem;
+    }
+
+    blockquote {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.4;
+      max-width: 24ch;
+      margin: 0 auto;
+      color: var(--ink);
+    }
+
+    blockquote::before {
+      content: '\201C';
+      display: block;
+      font-size: 5rem;
+      line-height: 0.5;
+      color: var(--warm);
+      margin-bottom: 1.5rem;
+    }
+
+    cite {
+      display: block;
+      margin-top: 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-style: normal;
+    }
+
+    /* HOW IT WORKS */
+    .steps {
+      margin-top: 4rem;
+      counter-reset: steps;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--rule);
+      counter-increment: steps;
+    }
+
+    .step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      padding-top: 0.3rem;
+    }
+
+    .step h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+    }
+
+    .step p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #5a5550;
+      line-height: 1.8;
+      max-width: 55ch;
+    }
+
+    /* WHO IS THIS FOR */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 4rem;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .audience-card {
+      background: var(--paper);
+      padding: 3rem;
+    }
+
+    .audience-card h3 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .audience-card p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #5a5550;
+      line-height: 1.8;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding: 8rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .contact-section h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      max-width: none;
+    }
+
+    .contact-body p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #4a4540;
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-link {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--rule);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes lineSlide {
+      0%   { left: -100%; }
+      50%  { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      header, section, .contact-section { padding: 3rem 2rem; }
+      .two-col, .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+      .principles { grid-template-columns: 1fr; }
+      .principle { border-right: none; border-bottom: 1px solid var(--rule); padding: 2rem 0; }
+      .principle:last-child { border-bottom: none; padding-left: 0; }
+      .principle:nth-child(2) { padding-left: 0; }
+      .paths { grid-template-columns: 1fr; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .vertical-text { display: none; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-top">
+      <span class="logo">Forma</span>
+      <div class="header-meta">
+        Fernando Silveira<br>
+        English for Professionals
+      </div>
+    </div>
+
+    <div class="header-body">
+      <p class="eyebrow">A method for professional English</p>
+      <h1>Learn English through what <em>matters</em> to you.</h1>
+      <p class="header-statement">
+        Forma is not a language course. It is a professional development program delivered in English. You improve the language because you are fully engaged with ideas that are relevant to your work and your life.
+      </p>
+    </div>
+
+    <div class="header-footer">
+      <span class="scroll-hint">Read on</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <span class="vertical-text">Fernando Silveira — Forma Method</span>
+  </header>
+
+  <!-- THE PROBLEM -->
+  <section>
+    <div class="two-col">
+      <div>
+        <p class="section-label">The problem</p>
+        <h2>Most English classes teach English. <em>Forma doesn't.</em></h2>
+      </div>
+      <div class="prose reveal">
+        <p>Traditional language instruction treats English as the subject. Grammar rules, vocabulary lists, translation exercises. The problem is that adults don't acquire language this way — they acquire it through sustained, meaningful engagement with content that matters to them.</p>
+        <p>Forma inverts the model. The subject is always something professionally relevant: how to communicate in meetings, how to make better decisions, how to understand complex systems. English is the medium through which that content is delivered. Proficiency rises as a byproduct of genuine engagement — not as a goal pursued in isolation.</p>
+      </div>
+    </div>
+
+    <div class="principles">
+      <div class="principle reveal">
+        <span class="principle-number">01</span>
+        <h3>Content first, language second</h3>
+        <p>Every lesson is built around a professional topic that has real value independent of the language it is delivered in.</p>
+      </div>
+      <div class="principle reveal">
+        <span class="principle-number">02</span>
+        <h3>Register matched to level</h3>
+        <p>Language is carefully calibrated to the student's current level — simple enough to follow, rich enough to stretch. Complexity of idea is never sacrificed for simplicity of language.</p>
+      </div>
+      <div class="principle reveal">
+        <span class="principle-number">03</span>
+        <h3>Production over passive exposure</h3>
+        <p>Every lesson cycle ends with the student producing language — writing, speaking, or both. Reception and production are treated as equally essential.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <blockquote class="reveal">
+      Proficiency is not the destination. It is what happens on the way to somewhere more interesting.
+    </blockquote>
+    <cite>The Forma Method</cite>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <p class="section-label">How it works</p>
+    <h2>A structured cycle, built around <em>your time.</em></h2>
+
+    <div class="prose reveal" style="margin-bottom: 3rem;">
+      <p>Each Forma path has 8 topics and lasts 4 months — two topics per month, one topic every two weeks. Every topic follows the same four-step cycle: two weeks of work, two live sessions with Fernando, one topic fully covered. The rhythm is consistent by design — predictable enough to build habits, varied enough to stay alive.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">Week 01</span>
+        <div>
+          <h3>Independent exposure</h3>
+          <p>The student receives a short expository text with an audio transcription. They read and listen at their own pace — once, twice, as many times as needed. A vocabulary section draws attention to the language that matters most in this lesson.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">Live 01</span>
+        <div>
+          <h3>First live session</h3>
+          <p>We read the text together, discuss the vocabulary, and work through the comprehension questions as a conversation — not a test. The session deepens what the student has already processed independently.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">Week 02</span>
+        <div>
+          <h3>The story</h3>
+          <p>Each lesson includes a dialogue from an ongoing professional narrative — a story that develops across the entire program. The student reads and listens to this episode independently, meeting the topic inside a human situation.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">Live 02</span>
+        <div>
+          <h3>Simulation and production</h3>
+          <p>In the second live session, the student steps into the story as its main character and completes a real professional task — writing an email, handling a difficult conversation, running a short meeting. The lesson closes with written reflection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATHS -->
+  <section>
+    <div class="two-col">
+      <div>
+        <p class="section-label">The paths</p>
+        <h2>Your three programs. One <em>coherent year.</em></h2>
+      </div>
+      <div class="prose reveal">
+        <p>A Forma program runs for one year, structured as three sequential paths of four months each. The three paths are chosen together — based on your professional context, your goals, and where you are in the language. No two students follow the same year.</p>
+        <p>Below is an example of one student's current program, to give you a sense of the kind of topics a Forma path is built around.</p>
+      </div>
+    </div>
+
+    <div class="paths reveal">
+      <div class="path-card">
+        <span class="path-number">01</span>
+        <h3>Meeting Updates &amp; Communication</h3>
+        <p>How to show up clearly in professional meetings — giving updates, reporting problems, handling disagreement, and running a session from opening to close.</p>
+        <div class="path-detail">
+          4 months &nbsp;·&nbsp; 8 lessons &nbsp;·&nbsp; Example path
+        </div>
+      </div>
+      <div class="path-card">
+        <span class="path-number">02</span>
+        <h3>Decision-Making Under Uncertainty</h3>
+        <p>How to act well when information is incomplete — mapping choices, recognizing assumptions, comparing options, and communicating your reasoning to others.</p>
+        <div class="path-detail">
+          4 months &nbsp;·&nbsp; 8 lessons &nbsp;·&nbsp; Example path
+        </div>
+      </div>
+      <div class="path-card">
+        <span class="path-number">03</span>
+        <h3>Systems Thinking</h3>
+        <p>How to see the structure behind complexity — feedback loops, delays, unintended consequences, and the leverage points where intervention actually matters.</p>
+        <div class="path-detail">
+          4 months &nbsp;·&nbsp; 8 lessons &nbsp;·&nbsp; Example path
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IS THIS FOR -->
+  <section>
+    <p class="section-label">Who this is for</p>
+    <h2>Professionals who want their English to <em>work for them.</em></h2>
+
+    <div class="audience-grid reveal">
+      <div class="audience-card">
+        <h3>Individual professionals</h3>
+        <p>You work in English — or you will. You have functional English but it doesn't yet feel natural in professional situations. You want to develop in the language through content that is actually relevant to your career, not through exercises designed for students half your age.</p>
+      </div>
+      <div class="audience-card">
+        <h3>Companies and teams</h3>
+        <p>Your team operates internationally or is preparing to. You want professional development that builds both English proficiency and the thinking skills that make people more effective — not a generic language training program that treats all employees the same.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section">
+    <div>
+      <p class="section-label">Get in touch</p>
+      <h2>If this sounds right, <em>let's talk.</em></h2>
+    </div>
+    <div class="contact-body reveal">
+      <p>Forma programs are designed individually. Before anything begins, we have a conversation — about where you are, what you need, and whether this method is the right fit for you. There is no enrollment form. There is no standard package. There is a conversation, and then a decision.</p>
+      <a href="mailto:your@email.com" class="contact-link">Send a message</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Fernando Silveira — Forma Method</span>
+    <span class="footer-copy">© 2026</span>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
