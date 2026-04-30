@@ -444,6 +444,20 @@
     }
 
     /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 2rem 1.2rem;
+        background: rgba(20,18,16,0.97);
+      }
+      .lang-toggle {
+        position: static;
+        transform: none;
+      }
+    }
+
     @media (max-width: 900px) {
       nav { padding: 1.5rem 2rem; }
       .nav-links { gap: 1.5rem; }
@@ -465,13 +479,12 @@
 </head>
 <body>
 
-  <div class="lang-toggle">
-    <span class="lang-active" title="English"><img src="assets/usa-flag-icon.svg" alt="English" /></span>
-    <span class="lang-sep">/</span>
-    <a href="index-pt.html" title="Português"><img src="assets/brazil-flag-icon.svg" alt="Português" /></a>
-  </div>
-
   <nav>
+    <div class="lang-toggle">
+      <span class="lang-active" title="English"><img src="assets/usa-flag-icon.svg" alt="English" /></span>
+      <span class="lang-sep">/</span>
+      <a href="index-pt.html" title="Português"><img src="assets/brazil-flag-icon.svg" alt="Português" /></a>
+    </div>
     <a href="#" class="nav-name">Fernando Silveira</a>
     <ul class="nav-links">
       <li><a href="writings.html">Writer</a></li>
