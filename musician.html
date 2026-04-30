@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drummer — Fernando Silveira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #141210;
+      --ink: #e8e2d9;
+      --muted: #6b6560;
+      --rule: #2a2723;
+      --accent: #c9a96e;
+      --accent-dim: #7a6340;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* GRAIN */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* HOME LINK */
+    .nav-home {
+      position: fixed;
+      top: 1.8rem;
+      left: 4rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+      z-index: 10;
+    }
+
+    .nav-home:hover { opacity: 0.6; }
+
+    /* DRUM STICKS */
+    .sticks {
+      position: relative;
+      width: 140px;
+      height: 320px;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeIn 1.2s ease 0.3s forwards;
+    }
+
+    .stick {
+      position: absolute;
+      left: 50%;
+      width: 7px;
+      height: 290px;
+      border-radius: 3.5px 3.5px 4px 4px;
+      background: linear-gradient(to bottom,
+        var(--accent) 0%,
+        var(--accent) 15%,
+        var(--accent-dim) 60%,
+        #3d2e18 100%
+      );
+      transform-origin: 50% 62%;
+    }
+
+    .stick::before {
+      content: '';
+      position: absolute;
+      width: 9px;
+      height: 22px;
+      border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+      background: var(--accent);
+      top: -14px;
+      left: -1px;
+      box-shadow: 0 0 8px rgba(201,169,110,0.3);
+    }
+
+    .stick-left  { transform: translateX(-50%) rotate(-28deg); }
+    .stick-right { transform: translateX(-50%) rotate(28deg); }
+
+    /* TEXT */
+    .content {
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.7s forwards;
+    }
+
+    .content h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .content .label {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .nav-home { left: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="nav-home">← Fernando Silveira</a>
+
+  <div class="sticks">
+    <div class="stick stick-left"></div>
+    <div class="stick stick-right"></div>
+  </div>
+
+  <div class="content">
+    <h1>Drummer.</h1>
+    <span class="label">Coming soon</span>
+  </div>
+
+</body>
+</html>

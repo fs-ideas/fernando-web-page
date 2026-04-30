@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — Fernando Silveira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: #f7f4ee;
+      --ink: #1a1814;
+      --muted: #9e9890;
+      --accent: #8b6f47;
+      --rule: #d8d2c8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 19px;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.5;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.6rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(247,244,238,0.97) 0%, transparent 100%);
+    }
+
+    .nav-home {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-home:hover { opacity: 0.7; }
+
+    .nav-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 13rem 4rem 5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .page-header h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-header-note {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 50ch;
+    }
+
+    /* PIECE */
+    .piece {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 6rem 2rem 7rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .piece-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+
+    .piece-meta {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .piece-image {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 2.5rem;
+    }
+
+    .piece-body p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 2;
+      color: #3a3530;
+    }
+
+    .piece-body p + p {
+      margin-top: 1.2em;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-sig {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--rule);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.4rem 2rem; }
+      .page-header { padding: 9rem 2rem 4rem; }
+      .piece { padding: 4rem 1.5rem 5rem; }
+      .piece-image { width: 200px; height: 200px; }
+      footer { padding: 2rem; flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-home">Fernando Silveira</a>
+    <span class="nav-label">Writing</span>
+  </nav>
+
+  <div class="page-header">
+    <h1>Writing.</h1>
+    <p class="page-header-note">Observational pieces on the unremarkable — a bench, a stranger, a small human moment.</p>
+  </div>
+
+  <!-- PIECE 01 -->
+  <article class="piece">
+    <h2 class="piece-title reveal">A Casual Interaction</h2>
+    <p class="piece-meta reveal">Fernando G Silveira - November 10 2025 / Campinas SP, Brazil</p>
+    <img class="piece-image reveal" src="assets/writings-covers/dog-at-the-square.avif" alt="A Casual Interaction" />
+    <div class="piece-body reveal">
+      <p>I sat on the bench at the square after a short walk with Stick. As a custom of mine, I stripped my shirt, sat upright and began taking deep breaths. A woman sat on the swing a few feet away; she had been walking her dog too.</p>
+      <p>Stick wanted to walk toward them and I thought of stopping him. I called him out once, but he was too focused; he did not listen as he usually does. I knew he only wanted to socialize; he would not be an inconvenience.</p>
+      <p>The thought of stopping him was more of a reflex. It was a want to avoid the interaction, a belief that these are bound to awkwardness and clichés. But I let him go anyway.</p>
+      <p>He was just a few feet away from the woman and her dog when I stood and started walking toward them myself.</p>
+      <p>"He wants to make an acquaintance", I began.</p>
+      <p>'I know! And this one won't ever sit still', she smiled.</p>
+      <p>Her pup was all over the place, bringing down his chest, face up and tail wiggling.</p>
+      <p>'How old is he?', I asked.</p>
+      <p>'He's two'.</p>
+      <p>'Ah! Just a baby! That's why he's all fired up'.</p>
+      <p>There was a giggle from both of us.</p>
+      <p>'It's good to let them make friends. This one lives in an apartment, hardly sees other dogs. Is it just him too? What is his name?'</p>
+      <p>I stepped closer to the little white electron — a Shih Tzu. He was still badgering Stick to play with him, circling him like mad, running back and forth. Stick liked him, but he is eleven already.</p>
+      <p>'Ah, it's Theo', she said.</p>
+      <p>I gave Theo a few ear scratches. He sat still, at last, panting, tongue out.</p>
+      <p>'and yes', she went on, 'sometimes I let him off the leash but I'm afraid he will run to the street.' There were other dogs at the square and I sensed she meant she could let him off the leash to be with them.</p>
+      <p>'Yea. I know. This guy here has never really walked on a leash, he's just used to walking by himself.'</p>
+      <p>'Ah, what a cutie!'</p>
+      <p>Stick had gotten himself familiar with Theo; he began walking back to our bench.</p>
+      <p>'Yea, he's a good boy. Let me get back, you have a nice day', I waved and smiled at them.</p>
+      <p>'Yea, you too! Bye!', she was smiling and waving back.</p>
+      <p>I sat back on the bench.</p>
+    </div>
+  </article>
+
+  <!-- PIECE 02 -->
+  <article class="piece">
+    <h2 class="piece-title reveal">The Old Lady And The Kitchen Towels</h2>
+    <p class="piece-meta reveal">Fernando G Silveira - August 14 2025 / Campinas SP, Brazil</p>
+    <img class="piece-image reveal" src="assets/writings-covers/lady-and-the-towels.avif" alt="The Old Lady And The Kitchen Towels" />
+    <div class="piece-body reveal">
+      <p>An old lady approached me at the square today morning. She looked feeble and tired from walking. She carried a shoulder bag filled with dish towels and asked me if I wanted to buy one.</p>
+      <p>"I'm selling these towels. Will you buy one? It's five reais each."</p>
+      <p>I'd had a few for a while and their replacement was long overdue. I wondered how badly she needed the money too but I didn't ask.</p>
+      <p>"Do you take Pix?"</p>
+      <p>"Sorry, honey, I don't have it". She would only take cash.</p>
+      <p>A car parked five feet from where we were and a woman stepped out. She was dressed formally, probably for work, and had sunglasses on. She locked the car and began up the street, looking at her phone as she walked. She stopped and stood there for a while, staring at the screen.</p>
+      <p>Maybe she has cash on her and will exchange it for Pix, I thought. I waited for her to walk up closer.</p>
+      <p>I hesitated for a brief second. She looked preoccupied with something.</p>
+      <p>The lady walked on, without looking up, still glued to the screen.</p>
+      <p>"Excuse me", I said. She looked up. "Do you by any chance have twenty reais on you? This lady is selling these kitchen towels and I'd like to buy. She'll only take cash, though. I would Pix you the amount."</p>
+      <p>"Oh, I'm sorry, I don't", she smiled.</p>
+      <p>"Yeah, no one really ever carries cash anymore, right? I for one only have my phone on me, I use a digital wallet."</p>
+      <p>"I know!" She nodded. "Me too. I never have cash on me either."</p>
+      <p>"Thanks anyway, have a nice day."</p>
+      <p>"You too", she smiled and continued walking.</p>
+      <p>I looked back at the old lady and told her I would buy her kitchen towels if we met again. "I'll make sure to have cash on me next time."</p>
+      <p>"I'm around often, dear", she said.</p>
+      <p>"All right, then. Have a nice day."</p>
+      <p>She said "thank you" and walked away.</p>
+    </div>
+  </article>
+
+  <footer>
+    <span class="footer-sig">Fernando G. Silveira</span>
+    <span class="footer-copy">Copyright © 2026</span>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

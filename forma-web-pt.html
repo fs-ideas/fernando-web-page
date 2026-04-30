@@ -64,6 +64,7 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
+      text-decoration: none;
     }
 
     .header-meta {
@@ -74,6 +75,41 @@
       letter-spacing: 0.08em;
       text-align: right;
       line-height: 1.8;
+    }
+
+    .lang-toggle {
+      position: fixed;
+      top: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .lang-toggle a {
+      display: flex;
+      text-decoration: none;
+      opacity: 0.4;
+      transition: opacity 0.2s ease;
+    }
+
+    .lang-toggle a:hover { opacity: 1; }
+
+    .lang-toggle .lang-active { display: flex; opacity: 1; }
+
+    .lang-toggle img {
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .lang-toggle .lang-sep {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--rule);
     }
 
     .header-body {
@@ -516,10 +552,16 @@
 </head>
 <body>
 
+  <div class="lang-toggle">
+    <a href="forma-web-eng.html" title="English"><img src="assets/usa-flag-icon.svg" alt="English" /></a>
+    <span class="lang-sep">/</span>
+    <span class="lang-active" title="Português"><img src="assets/brazil-flag-icon.svg" alt="Português" /></span>
+  </div>
+
   <!-- HEADER -->
   <header>
     <div class="header-top">
-      <span class="logo">Forma</span>
+      <a href="index.html" class="logo">Home</a>
       <div class="header-meta">
         Fernando Silveira<br>
         Inglês para Profissionais
@@ -689,14 +731,14 @@
     </div>
     <div class="contact-body reveal">
       <p>Os programas Forma são desenhados individualmente. Antes de qualquer coisa, temos uma conversa — sobre onde você está, o que você precisa e se esse método é o caminho certo para você. Não há formulário de inscrição. Não há pacote padrão. Há uma conversa, e depois uma decisão.</p>
-      <a href="mailto:your@email.com" class="contact-link">Enviar uma mensagem</a>
+      <a href="mailto:contato@fergabriel.com" class="contact-link">Enviar uma mensagem</a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <span class="footer-name">Fernando Silveira — Método Forma</span>
-    <span class="footer-copy">© 2026</span>
+    <span class="footer-copy">Copyright © 2026</span>
   </footer>
 
   <script>

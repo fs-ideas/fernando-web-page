@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,6 +71,31 @@
       list-style: none;
     }
 
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
+
     .lang-toggle {
       position: fixed;
       top: 1.2rem;
@@ -104,36 +129,6 @@
       font-family: 'DM Mono', monospace;
       font-size: 0.5rem;
       color: var(--rule);
-    }
-
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.25s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
     }
 
     /* HERO */
@@ -209,9 +204,7 @@
       transition: color 0.25s, border-color 0.25s;
     }
 
-    .role-tag:last-child {
-      border-right: 1px solid var(--rule);
-    }
+    .role-tag:last-child { border-right: 1px solid var(--rule); }
 
     .role-tag:hover {
       color: var(--accent);
@@ -311,13 +304,8 @@
       transition: transform 0.4s ease;
     }
 
-    .dimension:hover {
-      background: var(--surface);
-    }
-
-    .dimension:hover::before {
-      transform: scaleX(1);
-    }
+    .dimension:hover { background: var(--surface); }
+    .dimension:hover::before { transform: scaleX(1); }
 
     .dimension-number {
       font-family: 'DM Mono', monospace;
@@ -398,9 +386,7 @@
       transition: border-color 0.25s;
     }
 
-    .contact-link:hover {
-      border-color: var(--accent);
-    }
+    .contact-link:hover { border-color: var(--accent); }
 
     /* FOOTER */
     footer {
@@ -466,77 +452,77 @@
 <body>
 
   <div class="lang-toggle">
-    <span class="lang-active" title="English"><img src="assets/usa-flag-icon.svg" alt="English" /></span>
+    <a href="index.html" title="English"><img src="assets/usa-flag-icon.svg" alt="English" /></a>
     <span class="lang-sep">/</span>
-    <a href="index-pt.html" title="Português"><img src="assets/brazil-flag-icon.svg" alt="Português" /></a>
+    <span class="lang-active" title="Português"><img src="assets/brazil-flag-icon.svg" alt="Português" /></span>
   </div>
 
   <nav>
     <a href="#" class="nav-name">Fernando Silveira</a>
     <ul class="nav-links">
-      <li><a href="writings.html">Writer</a></li>
-      <li><a href="forma-web-eng.html">Teacher</a></li>
-      <li><a href="https://www.benextsolutions.com.br" target="_blank" rel="noopener noreferrer">Entrepreneur</a></li>
-      <li><a href="musician.html">Musician</a></li>
+      <li><a href="writings.html">Escritor</a></li>
+      <li><a href="forma-web-pt.html">Professor</a></li>
+      <li><a href="https://www.benextsolutions.com.br" target="_blank" rel="noopener noreferrer">Empreendedor</a></li>
+      <li><a href="musician.html">Músico</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <p class="hero-label">Campinas, Brazil</p>
+    <p class="hero-label">Campinas, Brasil</p>
     <h1>
       <span class="first">Fernando</span>
       <span class="last">Silveira.</span>
     </h1>
     <div class="hero-roles">
-      <span class="role-tag">Writer</span>
-      <span class="role-tag">Teacher</span>
-      <span class="role-tag">Entrepreneur</span>
-      <span class="role-tag">Drummer</span>
+      <span class="role-tag">Escritor</span>
+      <span class="role-tag">Professor</span>
+      <span class="role-tag">Empreendedor</span>
+      <span class="role-tag">Baterista</span>
     </div>
     <span class="hero-location">Campinas · São Paulo · Brasil</span>
   </section>
 
   <!-- BIO -->
   <section class="bio">
-    <span class="bio-label reveal">About</span>
+    <span class="bio-label reveal">Sobre</span>
     <p class="bio-text reveal">
-      Fernando Silveira is a writer, teacher, entrepreneur, and drummer based in Campinas, Brazil. He writes on the mundane — a dog at a square, a stranger, a small social moment — and finds in it something worth recording. Fernando also writes on <em>philosophy and psychology</em>; to be shared soon. His teaching is built around a conviction that language is best acquired through ideas worth thinking about and tasks worth doing. On the entrepreneurial side, he acts as a developer, product owner and UX thinker at software house with two partners, building web and mobile systems for other companies. Fernando is also developing <em>Forma</em>, a mobile learning app for adults focused on developing how they think, work, relate to others, and handle their emotional lives — using English as the medium of growth rather than the subject of study. He has been playing drums for most of his life, a precious hobby.
+      Fernando Silveira é escritor, professor, empreendedor e baterista, baseado em Campinas, Brasil. Ele escreve sobre o cotidiano — um cachorro em uma praça, um desconhecido, um pequeno momento social — e encontra algo que vale registrar. Fernando também escreve no campo da <em>filosofia e psicologia</em>; a ser compartilhado em breve. Seu trabalho como professor é construído sobre a convicção de que uma língua é melhor adquirida através de ideias e tarefas que são, de forma integral, práticas e relevantes na vida de quem estuda. No lado empreendedor, Fernando é desenvolvedor, product owner e arquiteto UX em uma software house com dois sócios, desenvolvendo sistemas web e mobile para outras empresas. Fernando está também desenvolvendo <em>Forma</em>, um aplicativo de aprendizagem para adultos focado no desenvolvimento da forma como pensam, trabalham, se relacionam com outras pessoas e lidam com suas vidas emocionais — usando o inglês como meio de crescimento, e não como matéria de estudo. Fernando toca bateria há a maior parte de sua vida, um precioso hobby.
     </p>
   </section>
 
   <!-- DIMENSIONS -->
   <section class="dimensions">
-    <p class="dimensions-header reveal">What I do</p>
+    <p class="dimensions-header reveal">O que faço</p>
     <div class="dimension-list">
 
-      <a href="writings.html" class="dimension reveal" id="writer">
+      <a href="writings.html" class="dimension reveal" id="escritor">
         <span class="dimension-number">01</span>
-        <span class="dimension-title">Writer</span>
-        <span class="dimension-desc">Observational pieces on the unremarkable, and longer work on philosophy and psychology — forthcoming.</span>
-        <span class="dimension-arrow">Read →</span>
+        <span class="dimension-title">Escritor</span>
+        <span class="dimension-desc">Textos observacionais sobre o dia-a-dia, e trabalhos mais longos em filosofia e psicologia — em breve.</span>
+        <span class="dimension-arrow">Ler →</span>
       </a>
 
-      <a href="forma-web-eng.html" class="dimension reveal" id="teacher">
+      <a href="forma-web-pt.html" class="dimension reveal" id="professor">
         <span class="dimension-number">02</span>
-        <span class="dimension-title">Teacher</span>
-        <span class="dimension-desc">Professional English through content that matters. For each student, one program, built around what they actually need.</span>
-        <span class="dimension-arrow">The Forma Method →</span>
+        <span class="dimension-title">Professor</span>
+        <span class="dimension-desc">Inglês profissional através de conteúdo que importa. Para cada aluno, um programa, construído em torno do que ele realmente precisa.</span>
+        <span class="dimension-arrow">O Método Forma →</span>
       </a>
 
-      <a href="https://www.benextsolutions.com.br" target="_blank" rel="noopener noreferrer" class="dimension reveal" id="entrepreneur">
+      <a href="https://www.benextsolutions.com.br" target="_blank" rel="noopener noreferrer" class="dimension reveal" id="empreendedor">
         <span class="dimension-number">03</span>
-        <span class="dimension-title">Entrepreneur</span>
-        <span class="dimension-desc">Developer and product owner at a software house — BeNext Solutions.</span>
-        <span class="dimension-arrow">Learn more →</span>
+        <span class="dimension-title">Empreendedor</span>
+        <span class="dimension-desc">Desenvolvedor e product owner em uma software house — BeNext Solutions.</span>
+        <span class="dimension-arrow">Saiba mais →</span>
       </a>
 
-      <a href="musician.html" class="dimension reveal" id="musician">
+      <a href="musician.html" class="dimension reveal" id="musico">
         <span class="dimension-number">04</span>
-        <span class="dimension-title">Drummer</span>
-        <span class="dimension-desc">Playing for most of his life. Serious about it, never made it a career. Recordings coming soon.</span>
-        <span class="dimension-arrow">Coming soon →</span>
+        <span class="dimension-title">Baterista</span>
+        <span class="dimension-desc">Tocando há a maior parte de sua vida. Levado a sério, mas nunca transformado em carreira. Gravações em breve.</span>
+        <span class="dimension-arrow">Em breve →</span>
       </a>
 
     </div>
@@ -544,10 +530,10 @@
 
   <!-- CONTACT -->
   <section class="contact">
-    <h2 class="reveal">Let's be in touch.</h2>
+    <h2 class="reveal">Vamos conversar.</h2>
     <div class="contact-body reveal">
-      <p>If something here resonates — a project, a conversation, a collaboration — feel free to reach out directly.</p>
-      <a href="mailto:contato@fergabriel.com" class="contact-link">Send a message</a>
+      <p>Se algo aqui ressoa — um projeto, uma conversa, uma colaboração — sinta-se à vontade para entrar em contato diretamente.</p>
+      <a href="mailto:contato@fergabriel.com" class="contact-link">Enviar mensagem</a>
     </div>
   </section>
 
