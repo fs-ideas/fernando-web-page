@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forma — How It Works</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #f7f3ec;
+    --paper: #1a1714; 
+    --warm: #ede6d5;
+    --accent: #7a3b10;
+    --accent2: #c4763a;
+    --muted: #7a6f63;
+    --rule: #d8cebc;
+    --once: #4a7a52;
+    --program: #7a5230;
+    --repeat: #3a5c7a;
+    --white: #ffffff;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    text-align: center;
+    padding: 70px 40px 50px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .wordmark {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  header h1 {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  header h1 em { font-style: italic; color: var(--accent2); }
+
+  header p {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px 40px;
+    background: var(--warm);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-once   { background: var(--once); }
+  .dot-program   { background: var(--program); }
+  .dot-repeat { background: var(--repeat); }
+
+  /* ── FLOW ── */
+  .flow {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Phase label */
+  .phase-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    margin-top: 12px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .phase-label.visible { opacity: 1; }
+
+  /* Step card */
+  .step {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 24px;
+    align-items: center;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .step.visible { opacity: 1; transform: translateY(0); }
+
+  .step.once   { border-left: 4px solid var(--once); }
+  .step.program   { border-left: 4px solid var(--program); }
+  .step.repeat { border-left: 4px solid var(--repeat); }
+
+  /* Icon */
+  .step-icon {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step.once   .step-icon { background: #edf4ee; color: var(--once); }
+  .step.program   .step-icon { background: #f4eeea; color: var(--program); }
+  .step.repeat .step-icon { background: #edf1f6; color: var(--repeat); }
+
+  .step-icon svg { width: 24px; height: 24px; }
+
+ 
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .step-title {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .step-title em { font-style: italic; color: var(--accent2); }
+
+  .step-desc {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* Pills */
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    background: var(--paper);
+  }
+
+  /* Arrow connector */
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 0;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.2s;
+  }
+  .connector.visible { opacity: 1; }
+
+  .conn-line {
+    width: 1px;
+    height: 28px;
+    background: var(--rule);
+  }
+  .conn-arrow {
+    width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid var(--rule);
+  }
+
+  /* Repeat loop indicator */
+  .loop-box {
+    width: 100%;
+    margin-top: 12px;
+    border: 1px dashed rgba(58,92,122,0.3);
+    border-radius: 6px;
+    padding: 14px 20px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .loop-box.visible { opacity: 1; }
+
+  .loop-box span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--repeat);
+  }
+
+  /* Closing */
+  .closing {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 80px 40px;
+  }
+
+  .closing h2 {
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: 18px;
+  }
+  .closing h2 em { font-style: italic; color: var(--accent2); }
+
+  .closing p {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(247,243,236,0.55);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+
+  @media (max-width: 560px) {
+    .step { grid-template-columns: 1fr; }
+    .step-icon { display: none; }
+    .legend { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wordmark">Forma</div>
+  <h1>From enrollment<br>to <em>adaptation</em></h1>
+  <p>Six steps. A four-month cycle built around you.</p>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="dot dot-once"></div> happens once</div>
+  <div class="legend-item"><div class="dot dot-program"></div> once per program</div>
+  <div class="legend-item"><div class="dot dot-repeat"></div> repeats every lesson</div>
+</div>
+
+<div class="flow">
+
+  <div class="phase-label">— Setup —</div>
+
+  <!-- 1. Discovery -->
+  <div class="step once">
+    <div class="step-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <program d="M12 20h9"/><program d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4Z"/>
+      </svg>
+    </div>
+    <div class="step-text">
+      <div class="step-num">01</div>
+      <div class="step-title"><em>Discovery</em></div>
+      <div class="step-desc">You fill out a form providing information about your work — your role, your industry, and how and where English is present in your daily routine.</div>
+      <div class="pills">
+        <span class="pill">professional context</span>
+        <span class="pill">level assessment</span>
+        <span class="pill">communication needs</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="conn-line"></div>
+    <div class="conn-arrow"></div>
+  </div>
+
+  <!-- 2. Design -->
+  <div class="step program">
+    <div class="step-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
+      </svg>
+    </div>
+    <div class="step-text">
+      <div class="step-num">02</div>
+      <div class="step-title"><em>Design</em></div>
+      <div class="step-desc">A program is built for you — one professional domain, organized into lessons that form a clear progression from start to finish.</div>
+      <div class="pills">
+        <span class="pill">4 months</span>
+        <span class="pill">tailored domain</span>
+        <span class="pill">progressive structure</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="conn-line"></div>
+    <div class="conn-arrow"></div>
+  </div>
+
+  <div class="phase-label">— Once per program —</div>
+
+  <!-- 3. Production -->
+  <div class="step program">
+    <div class="step-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <program d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+      </svg>
+    </div>
+    <div class="step-text">
+      <div class="step-num">03</div>
+      <div class="step-title"><em>Production</em></div>
+      <div class="step-desc">All lesson content is written and recorded before the student begins — text, vocabulary, quiz, audio — at the student's exact level.</div>
+      <div class="pills">
+        <span class="pill">expository text</span>
+        <span class="pill">vocabulary</span>
+        <span class="pill">quiz</span>
+        <span class="pill">audio</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="conn-line"></div>
+    <div class="conn-arrow"></div>
+  </div>
+
+  <!-- 4. Story -->
+  <div class="step program">
+    <div class="step-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <program d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <program d="M23 21v-2a4 4 0 00-3-3.87"/>
+        <program d="M16 3.13a4 4 0 010 7.75"/>
+      </svg>
+    </div>
+    <div class="step-text">
+      <div class="step-num">04</div>
+      <div class="step-title">The <em>story</em></div>
+      <div class="step-desc">A fictional workplace narrative runs across all lessons. Four characters, a real project, one arc from beginning to end. Each lesson's concept is lived in the story, not just explained in the text.</div>
+      <div class="pills">
+        <span class="pill">4 characters</span>
+        <span class="pill">workplace dialogues</span>
+        <span class="pill">task trigger per episode</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="conn-line"></div>
+    <div class="conn-arrow"></div>
+  </div>
+
+  <div class="phase-label">— Per lesson —</div>
+
+  <!-- 5. Delivery -->
+  <div class="step repeat">
+    <div class="step-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <program d="M8 21h8M12 17v4"/>
+      </svg>
+    </div>
+    <div class="step-text">
+      <div class="step-num">05</div>
+      <div class="step-title"><em>Delivery</em></div>
+      <div class="step-desc">Between sessions, you study on the platform independently — reading, listening, completing the quiz. You arrive at class ready to go deeper.</div>
+      <div class="pills">
+        <span class="pill">listen to text</span>
+        <span class="pill">read dialogue</span>
+        <span class="pill">complete quiz</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="conn-line"></div>
+    <div class="conn-arrow"></div>
+  </div>
+
+  <!-- 6. Application -->
+  <div class="step repeat">
+    <div class="step-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    </div>
+    <div class="step-text">
+      <div class="step-num">06</div>
+      <div class="step-title"><em>Application</em></div>
+      <div class="step-desc">In class, you step into the main character's role. You complete the task the story left open — the email to write, the document to prepare, the message to reply to.</div>
+      <div class="pills">
+        <span class="pill">oral discussion</span>
+        <span class="pill">simulation task</span>
+        <span class="pill">written closing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="loop-box">
+    <span>↻ &nbsp; steps 5 – 6 repeat for every lesson</span>
+  </div>
+
+</div>
+
+
+<script>
+  const all = document.querySelectorAll('.step, .connector, .phase-label, .loop-box');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  all.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
