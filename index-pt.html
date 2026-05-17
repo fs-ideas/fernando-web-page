@@ -33,7 +33,6 @@
       cursor: default;
     }
 
-    /* GRAIN */
     body::after {
       content: '';
       position: fixed;
@@ -43,7 +42,6 @@
       z-index: 999;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0;
@@ -72,8 +70,42 @@
       list-style: none;
     }
 
+    .lang-toggle {
+      position: fixed;
+      top: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .lang-toggle a {
+      display: flex;
+      text-decoration: none;
+      opacity: 0.4;
+      transition: opacity 0.2s ease;
+    }
+
+    .lang-toggle a:hover { opacity: 1; }
+    .lang-toggle .lang-active { display: flex; opacity: 1; }
+
+    .lang-toggle img {
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .lang-toggle .lang-sep {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--rule);
+    }
+
     .nav-student-area {
-      margin-left: 1rem;
+      margin-left: 2rem;
     }
 
     .nav-links a {
@@ -101,42 +133,6 @@
     .nav-links a:hover { color: var(--accent); }
     .nav-links a:hover::after { width: 100%; }
 
-    .lang-toggle {
-      position: fixed;
-      top: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .lang-toggle a {
-      display: flex;
-      text-decoration: none;
-      opacity: 0.4;
-      transition: opacity 0.2s ease;
-    }
-
-    .lang-toggle a:hover { opacity: 1; }
-
-    .lang-toggle .lang-active { display: flex; opacity: 1; }
-
-    .lang-toggle img {
-      width: 24px;
-      height: 24px;
-      object-fit: cover;
-      border-radius: 2px;
-    }
-
-    .lang-toggle .lang-sep {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.5rem;
-      color: var(--rule);
-    }
-
-    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -178,16 +174,8 @@
       animation: fadeUp 1.2s ease 0.5s forwards;
     }
 
-    h1 .first {
-      display: block;
-      color: var(--ink);
-    }
-
-    h1 .last {
-      display: block;
-      color: var(--accent);
-      font-style: italic;
-    }
+    h1 .first { display: block; color: var(--ink); }
+    h1 .last { display: block; color: var(--accent); font-style: italic; }
 
     .hero-roles {
       margin-top: 2.5rem;
@@ -230,7 +218,6 @@
       animation: fadeUp 1s ease 1s forwards;
     }
 
-    /* BIO SECTION */
     .bio {
       padding: 7rem 4rem;
       display: grid;
@@ -262,7 +249,6 @@
       color: var(--accent);
     }
 
-    /* DIMENSIONS */
     .dimensions {
       padding: 6rem 4rem;
       border-bottom: 1px solid var(--rule);
@@ -354,7 +340,6 @@
       letter-spacing: 0.25em;
     }
 
-    /* CONTACT */
     .contact {
       padding: 7rem 4rem;
       display: grid;
@@ -393,7 +378,6 @@
 
     .contact-link:hover { border-color: var(--accent); }
 
-    /* FOOTER */
     footer {
       padding: 2rem 4rem;
       border-top: 1px solid var(--rule);
@@ -417,7 +401,6 @@
       color: var(--rule);
     }
 
-    /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -434,7 +417,6 @@
       transform: translateY(0);
     }
 
-    /* HAMBURGER */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -459,7 +441,6 @@
     nav.open .hamburger span:nth-child(2) { opacity: 0; }
     nav.open .hamburger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); background: var(--accent); }
 
-    /* RESPONSIVE */
     @media (max-width: 900px) {
       nav { padding: 1.5rem 2rem; }
       .nav-links { gap: 1.5rem; }
@@ -547,52 +528,52 @@
   <section class="bio">
     <span class="bio-label reveal">Sobre</span>
     <p class="bio-text reveal">
-      Fernando Silveira é escritor, professor, empreendedor e baterista, baseado em Campinas, Brasil. Ele escreve sobre o cotidiano — um cachorro em uma praça, um desconhecido, um pequeno momento social — e encontra algo que vale registrar. Fernando também escreve no campo da <em>filosofia e psicologia</em>; a ser compartilhado em breve. Seu trabalho como professor é construído sobre a convicção de que uma língua é melhor adquirida através de ideias e tarefas que são, de forma integral, práticas e relevantes na vida de quem estuda. No lado empreendedor, Fernando é desenvolvedor, product owner e arquiteto UX em uma software house com dois sócios, desenvolvendo sistemas web e mobile para outras empresas. Fernando está também desenvolvendo <em>Forma</em>, um aplicativo de aprendizagem para adultos focado no desenvolvimento da forma como pensam, trabalham, se relacionam com outras pessoas e lidam com suas vidas emocionais — usando o inglês como meio de crescimento, e não como matéria de estudo. Fernando toca bateria há a maior parte de sua vida, um precioso hobby.
+      Fernando Silveira é escritor, professor, empreendedor e baterista baseado em Campinas, Brasil. Escreve em dois registros: peças observacionais curtas sobre momentos ordinários, e um <em>trabalho filosófico</em> mais longo atualmente em andamento. Seu ensino é construído sobre a convicção de que um idioma é melhor adquirido através de ideias que valem a pena pensar e tarefas que valem a pena fazer — um método que desenvolveu ao longo de treze anos e formalizou como <em>Forma</em>. No lado empreendedor, atua como desenvolvedor, product owner e pensador de UX na <em>BeNext Solutions</em>, uma software house que co-dirige com dois sócios. Toca bateria há maior parte da vida.
     </p>
   </section>
 
-  <!-- DIMENSIONS -->
+  <!-- DIMENSÕES -->
   <section class="dimensions">
     <p class="dimensions-header reveal">O que faço</p>
     <div class="dimension-list">
 
-      <a href="writings.html" class="dimension reveal" id="escritor">
+      <a href="writings-pt.html" class="dimension reveal" id="writer">
         <span class="dimension-number">01</span>
         <span class="dimension-title">Escritor</span>
-        <span class="dimension-desc">Textos observacionais sobre o dia-a-dia, e trabalhos mais longos em filosofia e psicologia — em breve.</span>
+        <span class="dimension-desc">Peças observacionais curtas sobre momentos ordinários, e um trabalho filosófico mais longo em andamento. Dois registros, uma disposição.</span>
         <span class="dimension-arrow">Ler →</span>
       </a>
 
-      <a href="forma-web-pt.html" class="dimension reveal" id="professor">
+      <a href="forma-web-pt.html" class="dimension reveal" id="teacher">
         <span class="dimension-number">02</span>
         <span class="dimension-title">Professor</span>
         <span class="dimension-desc">Inglês profissional através de conteúdo que importa. Para cada aluno, um programa, construído em torno do que ele realmente precisa.</span>
         <span class="dimension-arrow">O Método Forma →</span>
       </a>
 
-      <a href="https://www.benextsolutions.com.br" target="_blank" rel="noopener noreferrer" class="dimension reveal" id="empreendedor">
+      <a href="https://www.benextsolutions.com.br" target="_blank" rel="noopener noreferrer" class="dimension reveal" id="entrepreneur">
         <span class="dimension-number">03</span>
         <span class="dimension-title">Empreendedor</span>
-        <span class="dimension-desc">Desenvolvedor e product owner em uma software house — BeNext Solutions.</span>
+        <span class="dimension-desc">Desenvolvedor e product owner na BeNext Solutions — uma software house que constrói sistemas web e mobile para outras empresas.</span>
         <span class="dimension-arrow">Saiba mais →</span>
       </a>
 
-      <a href="musician.html" class="dimension reveal" id="musico">
+      <a href="musician-pt.html" class="dimension reveal" id="musician">
         <span class="dimension-number">04</span>
         <span class="dimension-title">Baterista</span>
-        <span class="dimension-desc">Tocando há a maior parte de sua vida. Levado a sério, mas nunca transformado em carreira. Gravações em breve.</span>
+        <span class="dimension-desc">Toca há maior parte da vida. Leva a sério, nunca fez carreira. Gravações em breve.</span>
         <span class="dimension-arrow">Em breve →</span>
       </a>
 
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTATO -->
   <section class="contact">
-    <h2 class="reveal">Vamos conversar.</h2>
+    <h2 class="reveal">Vamos nos falar.</h2>
     <div class="contact-body reveal">
-      <p>Se algo aqui ressoa — um projeto, uma conversa, uma colaboração — sinta-se à vontade para entrar em contato diretamente.</p>
-      <a href="mailto:contato@fergabriel.com" class="contact-link">Enviar mensagem</a>
+      <p>Se algo aqui fez sentido — um projeto, uma conversa, uma colaboração — sinta-se à vontade para entrar em contato diretamente.</p>
+      <a href="mailto:fernando@fernandosilveira.com" class="contact-link">Enviar uma mensagem</a>
     </div>
   </section>
 

@@ -409,6 +409,61 @@
       font-style: normal;
     }
 
+    /* ABOUT FERNANDO */
+    .about-section {
+      padding: 6rem 4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-prose {
+      max-width: 58ch;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #4a4540;
+      line-height: 1.85;
+    }
+
+    .about-prose p + p {
+      margin-top: 1.2em;
+    }
+
+    .about-credentials {
+      padding-top: 0.5rem;
+    }
+
+    .credential {
+      padding: 1.8rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .credential:last-child {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .credential-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .credential p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #5a5550;
+      line-height: 1.7;
+    }
+
     /* HOW IT WORKS */
     .steps {
       margin-top: 4rem;
@@ -562,8 +617,8 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      header, section, .contact-section { padding: 3rem 2rem; }
-      .two-col, .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+      header, section, .contact-section, .about-section { padding: 3rem 2rem; }
+      .two-col, .contact-section, .about-inner { grid-template-columns: 1fr; gap: 3rem; }
       .principles { grid-template-columns: 1fr; }
       .principle { border-right: none; border-bottom: 1px solid var(--rule); padding: 2rem 0; }
       .principle:last-child { border-bottom: none; padding-left: 0; }
@@ -594,10 +649,10 @@
     </div>
 
     <div class="header-body">
-      <p class="eyebrow">A method for professional English</p>
+      <p class="eyebrow"><strong>Forma:</strong> A method for professional English</p>
       <h1>Learn English through what <em>matters</em> to you.</h1>
       <p class="header-statement">
-        Forma is not a language course. It is a professional development program delivered in English. You improve the language because you are fully engaged with ideas that are relevant to your work and your life.
+        Forma is not a language course. It is a professional development program delivered in English. The language improves because it is being used — continuously, for something that actually matters.
       </p>
     </div>
 
@@ -618,7 +673,7 @@
       </div>
       <div class="prose reveal">
         <p>Traditional language instruction treats English as the subject. Grammar rules, vocabulary lists, translation exercises. The problem is that adults don't acquire language this way — they acquire it through sustained, meaningful engagement with content that matters to them.</p>
-        <p>Forma inverts the model. The subject is always something professionally relevant: how to communicate in meetings, how to make better decisions, how to understand complex systems. English is the medium through which that content is delivered. Proficiency rises as a byproduct of genuine engagement — not as a goal pursued in isolation.</p>
+        <p>Forma starts from the other end. The subject is always something professionally relevant: how to communicate in meetings, how to make better decisions, how to understand complex systems. English is the medium through which that content is delivered. Proficiency rises as a byproduct of genuine engagement — not as a goal pursued in isolation.</p>
       </div>
     </div>
 
@@ -647,6 +702,39 @@
       Proficiency is not the destination. It is what happens on the way to somewhere more interesting.
     </blockquote>
     <cite>The Forma Method</cite>
+  </section>
+
+  <!-- ABOUT FERNANDO -->
+  <section class="about-section">
+    <div class="about-inner">
+      <div>
+        <p class="section-label">The person behind it</p>
+        <h2>Built from <em>thirteen years</em> of teaching.</h2>
+      </div>
+      <div class="about-prose reveal">
+        <p>I started teaching English in 2012, at eighteen, inside a language school in Campinas. My first private students came from that school — they left when I did, because something in the approach had worked for them. Every student since has arrived the same way: through someone who sent them.</p>
+        <p>I have never taught grammar as an end in itself. From the beginning, what held a student's attention was always the idea inside the lesson — the thing worth thinking about. The language followed. Forma is the distillation of that observation into a method.</p>
+        <p>Outside the classroom, I write, build software, and play drums. I work as a developer and product owner at BeNext Solutions, a software house I co-run with two partners. The same disposition that shapes how I teach — precise, structured, interested in how things actually work — runs through everything else I do.</p>
+      </div>
+    </div>
+
+    <div class="principles" style="margin-top: 4rem;">
+      <div class="principle reveal">
+        <span class="principle-number">2012</span>
+        <h3>Started teaching</h3>
+        <p>First classes at Wise Up, Campinas. Left in 2016 to teach privately.</p>
+      </div>
+      <div class="principle reveal">
+        <span class="principle-number">2024</span>
+        <h3>The method crystallized</h3>
+        <p>Stopped teaching English as a subject. Every lesson became a professional development session conducted in English.</p>
+      </div>
+      <div class="principle reveal">
+        <span class="principle-number">Now</span>
+        <h3>One program per student</h3>
+        <p>Each student receives a program built around their professional context, their goals, and where they are in the language.</p>
+      </div>
+    </div>
   </section>
 
   <!-- HOW IT WORKS -->
@@ -756,7 +844,7 @@
     </div>
     <div class="contact-body reveal">
       <p>Forma programs are designed individually. Before anything begins, we have a conversation — about where you are, what you need, and whether this method is the right fit for you. There is no enrollment form. There is no standard package. There is a conversation, and then a decision.</p>
-      <a href="mailto:contato@fergabriel.com" class="contact-link">Send a message</a>
+      <a href="mailto:fernando@fernandosilveira.com" class="contact-link">Send a message</a>
     </div>
   </section>
 

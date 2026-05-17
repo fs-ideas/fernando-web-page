@@ -97,7 +97,6 @@
     }
 
     .lang-toggle a:hover { opacity: 1; }
-
     .lang-toggle .lang-active { display: flex; opacity: 1; }
 
     .lang-toggle img {
@@ -254,7 +253,9 @@
       line-height: 1.85;
     }
 
-    .prose p + p { margin-top: 1.2em; }
+    .prose p + p {
+      margin-top: 1.2em;
+    }
 
     .two-col {
       display: grid;
@@ -282,7 +283,9 @@
       padding-left: 2.5rem;
     }
 
-    .principle:nth-child(2) { padding-left: 2.5rem; }
+    .principle:nth-child(2) {
+      padding-left: 2.5rem;
+    }
 
     .principle-number {
       font-family: 'DM Mono', monospace;
@@ -322,7 +325,9 @@
       transition: background 0.3s ease;
     }
 
-    .path-card:hover { background: #f0ece3; }
+    .path-card:hover {
+      background: #f0ece3;
+    }
 
     .path-number {
       font-family: 'DM Mono', monospace;
@@ -395,7 +400,34 @@
       font-style: normal;
     }
 
-    .steps { margin-top: 4rem; }
+    .about-section {
+      padding: 6rem 4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-prose {
+      max-width: 58ch;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #4a4540;
+      line-height: 1.85;
+    }
+
+    .about-prose p + p {
+      margin-top: 1.2em;
+    }
+
+    .steps {
+      margin-top: 4rem;
+      counter-reset: steps;
+    }
 
     .step {
       display: grid;
@@ -403,6 +435,7 @@
       gap: 2rem;
       padding: 2.5rem 0;
       border-top: 1px solid var(--rule);
+      counter-increment: steps;
     }
 
     .step-num {
@@ -538,8 +571,8 @@
     }
 
     @media (max-width: 900px) {
-      header, section, .contact-section { padding: 3rem 2rem; }
-      .two-col, .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+      header, section, .contact-section, .about-section { padding: 3rem 2rem; }
+      .two-col, .contact-section, .about-inner { grid-template-columns: 1fr; gap: 3rem; }
       .principles { grid-template-columns: 1fr; }
       .principle { border-right: none; border-bottom: 1px solid var(--rule); padding: 2rem 0; }
       .principle:last-child { border-bottom: none; padding-left: 0; }
@@ -559,10 +592,10 @@
     <span class="lang-active" title="Português"><img src="assets/brazil-flag-icon.svg" alt="Português" /></span>
   </div>
 
-  <!-- HEADER -->
+  <!-- CABEÇALHO -->
   <header>
     <div class="header-top">
-      <a href="index.html" class="logo">Home</a>
+      <a href="index-pt.html" class="logo">Início</a>
       <div class="header-meta">
         Fernando Silveira<br>
         Inglês para Profissionais
@@ -570,10 +603,10 @@
     </div>
 
     <div class="header-body">
-      <p class="eyebrow">Um método para o inglês profissional</p>
+      <p class="eyebrow">Um método para inglês profissional</p>
       <h1>Aprenda inglês através do que <em>importa</em> para você.</h1>
       <p class="header-statement">
-        <strong>Forma</strong> não é um curso de idiomas. É um programa de desenvolvimento profissional entregue em inglês. Você evolui na língua porque está genuinamente envolvido com ideias relevantes para o seu trabalho e para a sua vida.
+        Forma não é um curso de idiomas. É um programa de desenvolvimento profissional conduzido em inglês. O idioma melhora porque está sendo usado — continuamente, para algo que realmente importa.
       </p>
     </div>
 
@@ -585,53 +618,86 @@
     <span class="vertical-text">Fernando Silveira — Método Forma</span>
   </header>
 
-  <!-- THE PROBLEM -->
+  <!-- O PROBLEMA -->
   <section>
     <div class="two-col">
       <div>
         <p class="section-label">O problema</p>
-        <h2>Escolas ensinam inglês. <em>Forma não.</em></h2>
+        <h2>Escolas de inglês ensinam inglês. <em>O Forma não.</em></h2>
       </div>
       <div class="prose reveal">
-        <p>O ensino tradicional de idiomas trata o inglês como o assunto principal. Regras gramaticais, listas de vocabulário, exercícios de tradução. O problema é que adultos não adquirem língua dessa forma — eles adquirem através do envolvimento contínuo e significativo com conteúdo que importa para eles.</p>
-        <p>Forma inverte o modelo. O assunto é sempre algo profissionalmente relevante: como se comunicar bem em reuniões, como tomar decisões melhores, como entender sistemas complexos. O inglês é o meio pelo qual esse conteúdo é entregue. A proficiência cresce como consequência do engajamento genuíno — não como um objetivo perseguido de forma isolada.</p>
+        <p>O ensino tradicional de idiomas trata o inglês como matéria. Regras gramaticais, listas de vocabulário, exercícios de tradução. O problema é que adultos não adquirem língua dessa forma — eles a adquirem através do contato sustentado e significativo com conteúdo que lhes interessa.</p>
+        <p>O Forma parte do outro extremo. O assunto é sempre algo profissionalmente relevante: como se comunicar em reuniões, como tomar melhores decisões, como entender sistemas complexos. O inglês é o meio pelo qual esse conteúdo é entregue. A proficiência cresce como consequência do engajamento genuíno — não como um objetivo perseguido isoladamente.</p>
       </div>
     </div>
 
     <div class="principles">
       <div class="principle reveal">
         <span class="principle-number">01</span>
-        <h3>Conteúdo primeiro, língua depois</h3>
-        <p>Cada aula é construída em torno de um tema profissional com valor real, independentemente do idioma em que é ensinado.</p>
+        <h3>Conteúdo primeiro, idioma depois</h3>
+        <p>Cada aula é construída em torno de um tema profissional que tem valor real independentemente do idioma em que é entregue.</p>
       </div>
       <div class="principle reveal">
         <span class="principle-number">02</span>
-        <h3>Linguagem calibrada ao nível</h3>
-        <p>O inglês é cuidadosamente ajustado ao nível atual do aluno — simples o suficiente para acompanhar, rico o suficiente para avançar. A complexidade das ideias nunca é sacrificada pela simplicidade da linguagem.</p>
+        <h3>Registro ajustado ao nível</h3>
+        <p>A linguagem é cuidadosamente calibrada ao nível atual do aluno — simples o suficiente para acompanhar, rica o suficiente para desafiar. A complexidade da ideia nunca é sacrificada pela simplicidade da linguagem.</p>
       </div>
       <div class="principle reveal">
         <span class="principle-number">03</span>
-        <h3>Produção acima de exposição passiva</h3>
-        <p>Todo ciclo de aula termina com o aluno produzindo linguagem — escrevendo, falando ou ambos. Recepção e produção são tratadas como igualmente essenciais.</p>
+        <h3>Produção acima da exposição passiva</h3>
+        <p>Cada ciclo de aula termina com o aluno produzindo linguagem — escrevendo, falando ou ambos. Recepção e produção são tratadas como igualmente essenciais.</p>
       </div>
     </div>
   </section>
 
-  <!-- QUOTE -->
+  <!-- CITAÇÃO -->
   <section class="quote-section">
     <blockquote class="reveal">
-      Proficiência não é o destino. É o que acontece no caminho para algum lugar mais interessante.
+      Proficiência não é o destino. É o que acontece no caminho para algo mais interessante.
     </blockquote>
     <cite>O Método Forma</cite>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- SOBRE FERNANDO -->
+  <section class="about-section">
+    <div class="about-inner">
+      <div>
+        <p class="section-label">A pessoa por trás do método</p>
+        <h2>Construído em <em>treze anos</em> de ensino.</h2>
+      </div>
+      <div class="about-prose reveal">
+        <p>Comecei a ensinar inglês em 2012, aos dezoito anos, numa escola de idiomas em Campinas. Meus primeiros alunos particulares vieram dessa escola — saíram quando eu saí, porque algo na abordagem havia funcionado para eles. Todos os alunos que vieram depois chegaram pelo mesmo caminho: indicados por quem já estava.</p>
+        <p>Nunca ensinei gramática como fim em si mesmo. Desde o começo, o que prendia a atenção de um aluno era sempre a ideia dentro da aula — a coisa que valia a pena pensar. O idioma vinha como consequência. O Forma é a destilação dessa observação em método.</p>
+        <p>Fora da sala de aula, escrevo, desenvolvo software e toco bateria. Atuo como desenvolvedor e product owner na BeNext Solutions, uma software house que co-dirijo com dois sócios. A mesma disposição que orienta como ensino — precisa, estruturada, interessada em como as coisas funcionam de fato — atravessa tudo o que faço.</p>
+      </div>
+    </div>
+
+    <div class="principles" style="margin-top: 4rem;">
+      <div class="principle reveal">
+        <span class="principle-number">2012</span>
+        <h3>Início do ensino</h3>
+        <p>Primeiras aulas na Wise Up, Campinas. Saí em 2016 para ensinar de forma independente.</p>
+      </div>
+      <div class="principle reveal">
+        <span class="principle-number">2024</span>
+        <h3>O método se cristalizou</h3>
+        <p>Deixei de ensinar inglês como matéria. Cada aula passou a ser uma sessão de desenvolvimento profissional conduzida em inglês.</p>
+      </div>
+      <div class="principle reveal">
+        <span class="principle-number">Hoje</span>
+        <h3>Um programa por aluno</h3>
+        <p>Cada aluno recebe um programa construído em torno do seu contexto profissional, dos seus objetivos e de onde está no idioma.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
   <section>
     <p class="section-label">Como funciona</p>
     <h2>Um ciclo estruturado, construído em torno do <em>seu tempo.</em></h2>
 
     <div class="prose reveal" style="margin-bottom: 3rem;">
-      <p>Cada trilha Forma tem 8 temas e dura 4 meses — dois temas por mês, um tema a cada duas semanas. Todo tema segue o mesmo ciclo de quatro etapas: duas semanas de trabalho, duas sessões ao vivo com Fernando, um tema completamente coberto. O ritmo é consistente por design — previsível o suficiente para criar hábitos, variado o suficiente para manter o engajamento.</p>
+      <p>Cada trilha do Forma tem 8 tópicos e dura 4 meses — dois tópicos por mês, um tópico a cada duas semanas. Cada tópico segue o mesmo ciclo de quatro etapas: duas semanas de trabalho, duas sessões ao vivo com Fernando, um tópico completamente coberto. O ritmo é consistente por design — previsível o suficiente para criar hábitos, variado o suficiente para manter o interesse.</p>
     </div>
 
     <div class="steps">
@@ -639,34 +705,34 @@
         <span class="step-num">Semana 01</span>
         <div>
           <h3>Exposição independente</h3>
-          <p>O aluno recebe um texto expositivo curto com transcrição em áudio. Lê e ouve no seu próprio ritmo — uma vez, duas vezes, quantas forem necessárias. Uma seção de vocabulário destaca a linguagem mais importante da aula.</p>
+          <p>O aluno recebe um texto expositivo curto com transcrição em áudio. Lê e escuta no próprio ritmo — uma vez, duas, quantas forem necessárias. Uma seção de vocabulário chama atenção para a linguagem mais relevante da aula.</p>
         </div>
       </div>
       <div class="step reveal">
-        <span class="step-num">Ao Vivo 01</span>
+        <span class="step-num">Aula 01</span>
         <div>
           <h3>Primeira sessão ao vivo</h3>
-          <p>Lemos o texto juntos, discutimos o vocabulário e trabalhamos as questões de compreensão como uma conversa — não como um teste. A sessão aprofunda o que o aluno já processou de forma independente.</p>
+          <p>Lemos o texto juntos, discutimos o vocabulário e trabalhamos as questões de compreensão como uma conversa — não como uma prova. A sessão aprofunda o que o aluno já processou de forma independente.</p>
         </div>
       </div>
       <div class="step reveal">
         <span class="step-num">Semana 02</span>
         <div>
           <h3>A história</h3>
-          <p>Cada aula inclui um diálogo de uma narrativa profissional em andamento — uma história que se desenvolve ao longo de toda a trilha. O aluno lê e ouve o episódio de forma independente, encontrando o tema dentro de uma situação humana real.</p>
+          <p>Cada aula inclui um diálogo de uma narrativa profissional em andamento — uma história que se desenvolve ao longo de todo o programa. O aluno lê e escuta esse episódio de forma independente, encontrando o tema dentro de uma situação humana.</p>
         </div>
       </div>
       <div class="step reveal">
-        <span class="step-num">Ao Vivo 02</span>
+        <span class="step-num">Aula 02</span>
         <div>
           <h3>Simulação e produção</h3>
-          <p>Na segunda sessão ao vivo, o aluno assume o papel do personagem principal da história e executa uma tarefa profissional real — escrever um e-mail, conduzir uma conversa difícil, coordenar uma reunião curta. A aula se encerra com reflexão escrita.</p>
+          <p>Na segunda sessão ao vivo, o aluno entra na história como personagem principal e conclui uma tarefa profissional real — escrever um e-mail, lidar com uma conversa difícil, conduzir uma reunião curta. A aula fecha com uma reflexão escrita.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PATHS -->
+  <!-- AS TRILHAS -->
   <section>
     <div class="two-col">
       <div>
@@ -674,16 +740,16 @@
         <h2>Seus três programas. Um <em>ano coerente.</em></h2>
       </div>
       <div class="prose reveal">
-        <p>Um programa Forma dura um ano, estruturado em três trilhas sequenciais de quatro meses cada. As três trilhas são escolhidas juntas — com base no seu contexto profissional, nos seus objetivos e no seu nível atual na língua. Nenhum aluno percorre o mesmo ano.</p>
-        <p>Abaixo está um exemplo do programa atual de um aluno, para dar uma ideia do tipo de temas que uma trilha Forma pode abordar.</p>
+        <p>Um programa Forma dura um ano, estruturado em três trilhas sequenciais de quatro meses cada. As três trilhas são escolhidas juntos — com base no seu contexto profissional, nos seus objetivos e em onde você está no idioma. Nenhum aluno segue o mesmo ano.</p>
+        <p>Abaixo está um exemplo do programa atual de um aluno, para dar uma ideia do tipo de temas em torno dos quais uma trilha Forma é construída.</p>
       </div>
     </div>
 
     <div class="paths reveal">
       <div class="path-card">
         <span class="path-number">01</span>
-        <h3>Comunicação e Atualizações em Reuniões</h3>
-        <p>Como se apresentar com clareza em reuniões profissionais — dar atualizações, reportar problemas, lidar com discordâncias e conduzir uma sessão do início ao fim.</p>
+        <h3>Reuniões, Atualizações e Comunicação</h3>
+        <p>Como se posicionar com clareza em reuniões profissionais — dando atualizações, reportando problemas, lidando com discordâncias e conduzindo uma sessão do início ao fim.</p>
         <div class="path-detail">
           4 meses &nbsp;·&nbsp; 8 aulas &nbsp;·&nbsp; Trilha exemplo
         </div>
@@ -691,7 +757,7 @@
       <div class="path-card">
         <span class="path-number">02</span>
         <h3>Tomada de Decisão sob Incerteza</h3>
-        <p>Como agir bem quando as informações são incompletas — mapear escolhas, reconhecer premissas, comparar opções e comunicar seu raciocínio a outras pessoas.</p>
+        <p>Como agir bem quando a informação é incompleta — mapeando escolhas, reconhecendo premissas, comparando opções e comunicando seu raciocínio aos outros.</p>
         <div class="path-detail">
           4 meses &nbsp;·&nbsp; 8 aulas &nbsp;·&nbsp; Trilha exemplo
         </div>
@@ -707,7 +773,7 @@
     </div>
   </section>
 
-  <!-- WHO IS THIS FOR -->
+  <!-- PARA QUEM É -->
   <section>
     <p class="section-label">Para quem é</p>
     <h2>Profissionais que querem que o inglês <em>trabalhe por eles.</em></h2>
@@ -715,28 +781,28 @@
     <div class="audience-grid reveal">
       <div class="audience-card">
         <h3>Profissionais individuais</h3>
-        <p>Você trabalha em inglês — ou vai trabalhar. Tem um inglês funcional, mas ele ainda não se sente natural em situações profissionais. Você quer desenvolver a língua através de conteúdo realmente relevante para a sua carreira, não através de exercícios feitos para estudantes com metade da sua idade.</p>
+        <p>Você trabalha em inglês — ou vai trabalhar. Tem inglês funcional, mas ele ainda não soa natural em situações profissionais. Você quer se desenvolver no idioma através de conteúdo que é realmente relevante para a sua carreira, não através de exercícios feitos para alunos com metade da sua idade.</p>
       </div>
       <div class="audience-card">
         <h3>Empresas e equipes</h3>
-        <p>Sua equipe atua internacionalmente ou está se preparando para isso. Você quer um desenvolvimento profissional que construa tanto a proficiência em inglês quanto as habilidades de pensamento que tornam as pessoas mais eficazes — não um treinamento genérico que trata todos os colaboradores da mesma forma.</p>
+        <p>Sua equipe atua internacionalmente ou está se preparando para isso. Você quer um desenvolvimento profissional que construa tanto a proficiência em inglês quanto as habilidades de pensamento que tornam as pessoas mais eficazes — não um programa genérico de treinamento de idiomas que trata todos os colaboradores da mesma forma.</p>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTATO -->
   <section class="contact-section">
     <div>
       <p class="section-label">Entre em contato</p>
-      <h2>Se isso faz sentido para você, <em>vamos conversar.</em></h2>
+      <h2>Se fez sentido, <em>vamos conversar.</em></h2>
     </div>
     <div class="contact-body reveal">
-      <p>Os programas Forma são desenhados individualmente. Antes de qualquer coisa, temos uma conversa — sobre onde você está, o que você precisa e se esse método é o caminho certo para você. Não há formulário de inscrição. Não há pacote padrão. Há uma conversa, e depois uma decisão.</p>
-      <a href="mailto:contato@fergabriel.com" class="contact-link">Enviar uma mensagem</a>
+      <p>Os programas Forma são desenhados individualmente. Antes de qualquer coisa, temos uma conversa — sobre onde você está, o que você precisa e se este método é a escolha certa para você. Não há formulário de inscrição. Não há pacote padrão. Há uma conversa e, depois, uma decisão.</p>
+      <a href="mailto:fernando@fernandosilveira.com" class="contact-link">Enviar uma mensagem</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- RODAPÉ -->
   <footer>
     <span class="footer-name">Fernando Silveira — Método Forma</span>
     <span class="footer-copy">Copyright © 2026</span>
