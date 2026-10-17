@@ -21,16 +21,15 @@
       --accent-dim: #7a6340;
     }
 
-    html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--ink);
       font-family: 'Lora', Georgia, serif;
-      font-size: 17px;
-      line-height: 1.75;
-      overflow-x: hidden;
-      cursor: default;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 16px;
     }
 
     /* GRAIN */
@@ -43,60 +42,32 @@
       z-index: 999;
     }
 
-    /* NAV */
-    nav {
+    body::before {
+      content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1.8rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(to bottom, rgba(20,18,16,0.95) 0%, transparent 100%);
+      inset: 0;
+      background: radial-gradient(ellipse 70% 45% at 50% 20%, rgba(201,169,110,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .nav-name {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
+    /* LANGUAGE */
     .lang-toggle {
-      position: fixed;
+      position: absolute;
       top: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 200;
+      right: 1.2rem;
+      z-index: 10;
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
 
-    .lang-toggle a {
-      display: flex;
-      text-decoration: none;
-      opacity: 0.4;
-      transition: opacity 0.2s ease;
-    }
-
+    .lang-toggle a { display: flex; opacity: 0.4; transition: opacity 0.2s ease; }
     .lang-toggle a:hover { opacity: 1; }
-
-    .lang-toggle .lang-active { display: flex; opacity: 1; }
+    .lang-toggle .lang-active { display: flex; }
 
     .lang-toggle img {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       object-fit: cover;
       border-radius: 2px;
     }
@@ -107,203 +78,92 @@
       color: var(--rule);
     }
 
-    .nav-student-area {
-      margin-left: 2rem;
-    }
-
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.25s ease;
+    /* PAGE */
+    main {
       position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .nav-links a:hover::after {
       width: 100%;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
+      max-width: 440px;
+      padding: 5.5rem 0 3rem;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 4rem 5rem;
-      position: relative;
-      border-bottom: 1px solid var(--rule);
+      align-items: center;
+      text-align: center;
+      flex: 1;
     }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(201,169,110,0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,169,110,0.03) 0%, transparent 60%);
-      pointer-events: none;
+    .photo {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--accent-dim);
+      padding: 5px;
+      background: var(--surface);
+      background-clip: content-box;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.2s forwards;
     }
 
-    .hero-label {
+    h1 {
+      margin-top: 1.8rem;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.3rem;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.35s forwards;
+    }
+
+    h1 .last { color: var(--accent); font-style: italic; }
+
+    .place {
+      margin-top: 0.9rem;
       font-family: 'DM Mono', monospace;
       font-size: 0.62rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--accent-dim);
-      margin-bottom: 2rem;
+      color: var(--muted);
       opacity: 0;
-      animation: fadeUp 1s ease 0.3s forwards;
+      animation: fadeUp 1s ease 0.45s forwards;
     }
 
-    h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(4rem, 10vw, 9rem);
-      font-weight: 400;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      opacity: 0;
-      animation: fadeUp 1.2s ease 0.5s forwards;
-    }
-
-    h1 .first {
-      display: block;
-      color: var(--ink);
-    }
-
-    h1 .last {
-      display: block;
-      color: var(--accent);
-      font-style: italic;
-    }
-
-    .hero-roles {
-      margin-top: 2.5rem;
+    /* LINKS */
+    .links {
+      list-style: none;
+      width: 100%;
+      margin-top: 2.8rem;
       display: flex;
-      gap: 0;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .links li {
       opacity: 0;
-      animation: fadeUp 1s ease 0.8s forwards;
+      animation: fadeUp 0.9s ease forwards;
     }
 
-    .role-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--rule);
-      border-right: none;
-      transition: color 0.25s, border-color 0.25s;
-    }
+    .links li:nth-child(1) { animation-delay: 0.55s; }
+    .links li:nth-child(2) { animation-delay: 0.65s; }
+    .links li:nth-child(3) { animation-delay: 0.75s; }
+    .links li:nth-child(4) { animation-delay: 0.85s; }
 
-    .role-tag:last-child {
-      border-right: 1px solid var(--rule);
-    }
-
-    .role-tag:hover {
-      color: var(--accent);
-      border-color: var(--accent-dim);
-    }
-
-    .hero-location {
-      position: absolute;
-      right: 4rem;
-      bottom: 5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      writing-mode: vertical-rl;
-      opacity: 0;
-      animation: fadeUp 1s ease 1s forwards;
-    }
-
-    /* BIO SECTION */
-    .bio {
-      padding: 7rem 4rem;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 6rem;
-      align-items: start;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .bio-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent-dim);
-      padding-top: 0.4rem;
-    }
-
-    .bio-text {
-      font-size: 1.2rem;
-      font-weight: 400;
-      line-height: 1.85;
-      color: #c8c2b8;
-      font-style: italic;
-    }
-
-    .bio-text em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
-    /* DIMENSIONS */
-    .dimensions {
-      padding: 6rem 4rem;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .dimensions-header {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent-dim);
-      margin-bottom: 4rem;
-    }
-
-    .dimension-list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-    }
-
-    .dimension {
-      background: var(--bg);
-      padding: 3rem 2.5rem;
-      text-decoration: none;
-      color: inherit;
+    .link {
       display: block;
-      transition: background 0.3s ease;
       position: relative;
       overflow: hidden;
+      padding: 1.15rem 1.5rem;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
     }
 
-    .dimension::before {
+    .link::after {
       content: '';
       position: absolute;
       bottom: 0;
@@ -316,330 +176,83 @@
       transition: transform 0.4s ease;
     }
 
-    .dimension:hover {
-      background: var(--surface);
-    }
-
-    .dimension:hover::before {
-      transform: scaleX(1);
-    }
-
-    .dimension-number {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--accent-dim);
-      display: block;
-      margin-bottom: 2rem;
-    }
-
-    .dimension-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.8rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--ink);
-      display: block;
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-    }
-
-    .dimension-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .dimension-arrow {
-      display: block;
-      margin-top: 2.5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent-dim);
-      transition: color 0.25s, letter-spacing 0.25s;
-    }
-
-    .dimension:hover .dimension-arrow {
+    .link:hover,
+    .link:focus-visible {
+      border-color: var(--accent-dim);
       color: var(--accent);
-      letter-spacing: 0.25em;
+      outline: none;
     }
 
-    /* CONTACT */
-    .contact {
-      padding: 7rem 4rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-    }
+    .link:hover::after,
+    .link:focus-visible::after { transform: scaleX(1); }
 
-    .contact h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.1;
-      color: var(--ink);
-    }
-
-    .contact-body p {
-      font-size: 1rem;
-      color: #7a7470;
-      line-height: 1.85;
-      margin-bottom: 2.5rem;
-    }
-
-    .contact-link {
+    .student-area {
+      margin-top: 2.2rem;
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent-dim);
       text-decoration: none;
-      border-bottom: 1px solid var(--accent-dim);
+      border-bottom: 1px solid var(--rule);
       padding-bottom: 0.2rem;
-      transition: border-color 0.25s;
+      transition: color 0.25s, border-color 0.25s;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 1s forwards;
     }
 
-    .contact-link:hover {
-      border-color: var(--accent);
-    }
+    .student-area:hover { color: var(--accent); border-color: var(--accent-dim); }
 
-    /* FOOTER */
     footer {
-      padding: 2rem 4rem;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-sig {
+      position: relative;
+      padding: 2rem 0;
       font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
+      text-align: center;
     }
 
-    .footer-copy {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      color: var(--rule);
-    }
+    footer a { color: var(--muted); text-decoration: none; transition: color 0.25s; }
+    footer a:hover { color: var(--accent); }
 
-    /* ANIMATIONS */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* HAMBURGER */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      z-index: 300;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 20px;
-      height: 1px;
-      background: var(--muted);
-      transition: transform 0.3s ease, opacity 0.2s ease, background 0.2s ease;
-    }
-
-    nav.open .hamburger span:nth-child(1) { transform: translateY(6px) rotate(45deg); background: var(--accent); }
-    nav.open .hamburger span:nth-child(2) { opacity: 0; }
-    nav.open .hamburger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); background: var(--accent); }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 1.5rem 2rem; }
-      .nav-links { gap: 1.5rem; }
-      .hero { padding: 0 2rem 4rem; }
-      .hero-location { display: none; }
-      .bio { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 2rem; }
-      .dimensions { padding: 4rem 2rem; }
-      .dimension-list { grid-template-columns: 1fr 1fr; }
-      .contact { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
-      footer { padding: 2rem; flex-direction: column; gap: 1rem; }
-    }
-
-    @media (max-width: 640px) {
-      .hamburger { display: flex; }
-      nav {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.4rem 1.5rem;
-        background: rgba(20,18,16,0.97);
-      }
-      .lang-toggle { position: static; transform: none; }
-      .nav-links {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: var(--bg);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3rem;
-        z-index: 200;
-        list-style: none;
-      }
-      nav.open .nav-links { display: flex; }
-      .nav-links a { font-size: 0.75rem; letter-spacing: 0.22em; }
-      .nav-student-area { margin-left: 0; }
-    }
-
-    @media (max-width: 480px) {
-      .dimension-list { grid-template-columns: 1fr; }
-      .role-tag { padding: 0.4rem 0.6rem; }
+    @media (prefers-reduced-motion: reduce) {
+      .photo, h1, .place, .links li, .student-area { animation: none; opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="lang-toggle">
-      <span class="lang-active" title="English"><img src="assets/usa-flag-icon.svg" alt="English" /></span>
-      <span class="lang-sep">/</span>
-      <a href="index-pt.html" title="Português"><img src="assets/brazil-flag-icon.svg" alt="Português" /></a>
-    </div>
-    <a href="#" class="nav-name">Fernando Silveira</a>
-    <button class="hamburger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-      <li><a href="writings.html">Writer</a></li>
-      <li><a href="forma-web-eng.html">Teacher</a></li>
-      <li><a href="https://www.benextsolutions.com.br" target="_blank" rel="noopener noreferrer">Entrepreneur</a></li>
-      <li><a href="musician.html">Musician</a></li>
-      <li class="nav-student-area"><a href="https://forma-web.fernandosilveira.com" target="_blank" rel="noopener noreferrer">Student Area</a></li>
+  <div class="lang-toggle">
+    <span class="lang-active" title="English"><img src="assets/usa-flag-icon.svg" alt="English" /></span>
+    <span class="lang-sep">/</span>
+    <a href="index-pt.html" title="Português"><img src="assets/brazil-flag-icon.svg" alt="Português" /></a>
+  </div>
+
+  <main>
+    <img class="photo" src="assets/fernando.jpg" alt="Fernando Silveira" onerror="this.onerror=null;this.src='assets/fs_logo.svg';" />
+    <h1>Fernando <span class="last">Silveira</span></h1>
+    <p class="place">Campinas · Brazil</p>
+
+    <ul class="links">
+      <li><a class="link" href="forma-web-eng.html">Teacher</a></li>
+      <li><a class="link" href="writings.html">Writer</a></li>
+      <li><a class="link" href="https://www.benextsolutions.com.br" target="_blank" rel="noopener noreferrer">Entrepreneur</a></li>
+      <li><a class="link" href="musician.html">Musician</a></li>
     </ul>
-  </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <p class="hero-label">Campinas, Brazil</p>
-    <h1>
-      <span class="first">Fernando</span>
-      <span class="last">Silveira.</span>
-    </h1>
-    <div class="hero-roles">
-      <span class="role-tag">Writer</span>
-      <span class="role-tag">Teacher</span>
-      <span class="role-tag">Entrepreneur</span>
-      <span class="role-tag">Drummer</span>
-    </div>
-    <span class="hero-location">Campinas · São Paulo · Brasil</span>
-  </section>
-
-  <!-- BIO -->
-  <section class="bio">
-    <span class="bio-label reveal">About</span>
-    <p class="bio-text reveal">
-      Fernando Silveira is a writer, teacher, entrepreneur, and drummer based in Campinas, Brazil. He writes in two registers: short observational pieces on ordinary moments, and longer <em>philosophical work</em> currently in progress. His teaching is built around a conviction that language is best acquired through ideas worth thinking about and tasks worth doing — a method he has developed over thirteen years and formalized as <em>Forma</em>. On the entrepreneurial side, he acts as a developer, product owner and UX thinker at <em>BeNext Solutions</em>, a software house he co-runs with two partners. He has been playing drums for most of his life.
-    </p>
-  </section>
-
-  <!-- DIMENSIONS -->
-  <section class="dimensions">
-    <p class="dimensions-header reveal">What I do</p>
-    <div class="dimension-list">
-
-      <a href="writings.html" class="dimension reveal" id="writer">
-        <span class="dimension-number">01</span>
-        <span class="dimension-title">Writer</span>
-        <span class="dimension-desc">Short observational pieces on ordinary moments, and longer philosophical work in progress. Two registers, one disposition.</span>
-        <span class="dimension-arrow">Read →</span>
-      </a>
-
-      <a href="forma-web-eng.html" class="dimension reveal" id="teacher">
-        <span class="dimension-number">02</span>
-        <span class="dimension-title">Teacher</span>
-        <span class="dimension-desc">Professional English through content that matters. For each student, one program, built around what they actually need.</span>
-        <span class="dimension-arrow">The Forma Method →</span>
-      </a>
-
-      <a href="https://www.benextsolutions.com.br" target="_blank" rel="noopener noreferrer" class="dimension reveal" id="entrepreneur">
-        <span class="dimension-number">03</span>
-        <span class="dimension-title">Entrepreneur</span>
-        <span class="dimension-desc">Developer and product owner at BeNext Solutions — a software house building web and mobile systems for other companies.</span>
-        <span class="dimension-arrow">Learn more →</span>
-      </a>
-
-      <a href="musician.html" class="dimension reveal" id="musician">
-        <span class="dimension-number">04</span>
-        <span class="dimension-title">Drummer</span>
-        <span class="dimension-desc">Playing for most of his life. Serious about it, never made it a career. Recordings coming soon.</span>
-        <span class="dimension-arrow">Coming soon →</span>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact">
-    <h2 class="reveal">Let's be in touch.</h2>
-    <div class="contact-body reveal">
-      <p>If something here resonates — a project, a conversation, a collaboration — feel free to reach out directly.</p>
-      <a href="mailto:fernando@fernandosilveira.com" class="contact-link">Send a message</a>
-    </div>
-  </section>
+    <a class="student-area" href="https://forma-web.fernandosilveira.com" target="_blank" rel="noopener noreferrer">Student Area</a>
+  </main>
 
   <footer>
-    <span class="footer-sig">Fernando G. Silveira</span>
-    <span class="footer-copy">Copyright © 2026</span>
+    <a href="mailto:fernando@fernandosilveira.com">fernando@fernandosilveira.com</a>
   </footer>
-
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
-    hamburger.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', open);
-    });
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 100);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
 
 </body>
 </html>
